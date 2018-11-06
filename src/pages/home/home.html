@@ -1,14 +1,28 @@
 <ion-header>
   <ion-navbar>
+      <ion-buttons start>
+          <button ion-button icon-only (click)="onToggleMenu()">
+            <ion-icon name="menu"></ion-icon>
+          </button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      OC - Ionic - Activité 01
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-card>
+      <ion-card-header>
+        OpenClassroom
+      </ion-card-header>
+      <ion-card-content>
+        Développez une application mobile multiplateforme avec Ionic
+        <br>
+        Activité 01 : Créez une application basique
+      </ion-card-content>
+    </ion-card>
+
+  <button ion-button full (click)="onGoToCollection()">Voir les collections</button>
+
 </ion-content>
