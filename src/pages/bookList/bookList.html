@@ -6,7 +6,7 @@
             </button>
       </ion-buttons>
       <ion-title>
-        OC - Ionic - Activité 01 - Livres
+        OC - Ionic - Activité - Livres
       </ion-title>
     </ion-navbar>
   </ion-header>
@@ -14,13 +14,31 @@
   <ion-content padding>
     <ion-list>
       <ion-list-header>Mes livres</ion-list-header>
+      <ion-item>
+        <ion-icon color="gray" name="book" item-start ></ion-icon>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6><b>Titre</b></ion-col>
+            <ion-col col-6><b>Auteur</b></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
       <button ion-item
+              full
               [color]="book.isOut ? 'light' : ''"
-              *ngFor="let book of books; let i = index"
+              *ngFor="let book of booksList; let i = index"
               (click)="onLoadBook(i)">
-        <ion-icon name="book" item-start [color]="book.isOut ? 'danger' : 'secondary'"></ion-icon>
-        <ion-label [color]="book.isOut ? 'gray' : ''">{{ book.titre }}</ion-label>
-        <ion-label [color]="book.isOut ? 'gray' : ''">{{ book.auteur }}</ion-label>
+            <ion-icon name="book" item-start [color]="book.isOut ? 'danger' : 'secondary'"></ion-icon>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-6 text-wrap>{{ book.titre }}</ion-col>
+                <ion-col col-6 text-wrap>{{ book.auteur }}</ion-col>
+              </ion-row>
+              <ion-row *ngIf="book.isOut">
+                <ion-col>>> Prété à {{ book.isOutTo }}</ion-col>
+              </ion-row>
+            </ion-grid>
       </button>
     </ion-list>
+    <button ion-button full (click)="onNewBook()">Nouveau Livre</button>
   </ion-content>

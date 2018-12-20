@@ -4,6 +4,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { Cd } from '../../models/Cd';
 
 import { MediasService } from '../../services/medias.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'page-lendCd',
@@ -29,8 +30,12 @@ export class LendCdPage implements OnInit {
     this.viewCtrl.dismiss();
   }
 
-  onToggleCd() {
+  onToggleCd(form: NgForm) {
     this.cd.isOut = !this.cd.isOut;
+    if(this.cd.isOut)
+      this.cd.isOutTo = form.value.qui;
+    else
+      this.cd.isOutTo = '';
     this.dismissModal();
   }
 

@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Nouveau Cd</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="cdForm">
+        <ion-list>
+        <ion-item-divider>Informations</ion-item-divider>
+        <ion-item>
+            <ion-label>Titre</ion-label>
+            <ion-input placeholder="Pornography" formControlName="titre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Artiste</ion-label>
+            <ion-input placeholder="The Cure" formControlName="artiste"></ion-input>
+            </ion-item>
+        <ion-item-divider>Description</ion-item-divider>
+        <div formArrayName="description">
+                <ion-item *ngFor="let control of getDescriptionArray().controls; let i = index">
+                  <ion-icon item-start
+                            name="remove-circle"
+                            color="danger"
+                            (click)="onRemoveDescription(i)">
+                  </ion-icon>
+                  <ion-input [formControlName]="i" [placeholder]="i+1 + '.'"></ion-input>
+                </ion-item>
+        </div>
+        </ion-list>
+        <button ion-button full (click)="onAddDescription()">Ajouter une ligne</button>
+        <button ion-button full (click)="onSubmitForm()">Enregistrer</button>
+    </form>
+</ion-content>

@@ -4,6 +4,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { Book } from '../../models/Book';
 
 import { MediasService } from '../../services/medias.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'page-lendBook',
@@ -29,8 +30,13 @@ export class LendBookPage implements OnInit {
     this.viewCtrl.dismiss();
   }
 
-  onToggleBook() {
+  onToggleBook(form: NgForm) {
+    //console.log(form.value);
     this.book.isOut = !this.book.isOut;
+    if(this.book.isOut)
+      this.book.isOutTo = form.value.qui;
+    else
+      this.book.isOutTo = '';
     this.dismissModal();
   }
 

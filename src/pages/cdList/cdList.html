@@ -6,7 +6,7 @@
             </button>
       </ion-buttons>
       <ion-title>
-        OC - Ionic - Activité 01 - Cds
+        OC - Ionic - Activité - Cds
       </ion-title>
     </ion-navbar>
   </ion-header>
@@ -14,13 +14,31 @@
   <ion-content padding>
     <ion-list>
       <ion-list-header>Mes CDs</ion-list-header>
+      <ion-item>
+        <ion-icon color="gray" name="disc" item-start ></ion-icon>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6><b>Titre</b></ion-col>
+            <ion-col col-6><b>Artiste</b></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
       <button ion-item
+              full
               [color]="cd.isOut ? 'light' : ''"
-              *ngFor="let cd of cds; let i = index"
+              *ngFor="let cd of cdsList; let i = index"
               (click)="onLoadCd(i)">
         <ion-icon name="disc" item-start [color]="cd.isOut ? 'danger' : 'secondary'"></ion-icon>
-        <ion-label [color]="cd.isOut ? 'gray' : ''">{{ cd.titre }}</ion-label>
-        <ion-label [color]="cd.isOut ? 'gray' : ''">{{ cd.artiste }}</ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6 text-wrap>{{ cd.titre }}</ion-col>
+            <ion-col col-6 text-wrap>{{ cd.artiste }}</ion-col>
+          </ion-row>
+          <ion-row *ngIf="cd.isOut">
+            <ion-col>>> Prété à {{ cd.isOutTo }}</ion-col>
+          </ion-row>
+        </ion-grid>
       </button>
     </ion-list>
+    <button ion-button full (click)="onNewCd()">Nouveau Cd</button>
   </ion-content>

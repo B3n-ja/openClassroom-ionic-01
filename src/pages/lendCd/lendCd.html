@@ -13,25 +13,27 @@
             <ion-card-content>
             <p *ngFor="let line of cd.description">{{ line }}</p>
             </ion-card-content>
-            <ion-grid>
-            <ion-row>
-                <ion-col>
-                <button
-                    ion-button
-                    full
-                    color="danger"
-                    [disabled]="!cd.isOut"
-                    (click)="onToggleCd()">Récupérer ce cd</button>
-                </ion-col>
-                <ion-col>
-                <button
-                    ion-button
-                    full
-                    color="secondary"
-                    [disabled]="cd.isOut"
-                    (click)="onToggleCd()">Préter ce cd</button>
-                </ion-col>
-            </ion-row>
-            </ion-grid>
+            <form #f="ngForm" (ngSubmit)="onToggleCd(f)">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label>A qui</ion-label>
+                                <ion-input type="text" [(ngModel)]="cd.isOutTo" [disabled]="cd.isOut" name="qui" required></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <button
+                                ion-button
+                                full
+                                [color]="cd.isOut === true ? 'danger' : 'secondary'"
+                                type="submit">{{ cd.isOut === true ? 'Récupérer ce disque' : 'Préter ce disque' }}
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
         </ion-card>
     </ion-content>

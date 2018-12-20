@@ -6,7 +6,7 @@
           </button>
     </ion-buttons>
     <ion-title>
-      OC - Ionic - Activité 01
+      OC - Ionic - Activité
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -23,6 +23,29 @@
       </ion-card-content>
     </ion-card>
 
-  <button ion-button full (click)="onGoToCollection()">Voir les collections</button>
-
+    <ion-card>
+        <ion-card-header>
+          <ion-card-title *ngIf="!isAuth" text-wrap text-center>Vous devez être connecté pour utiliser l'application</ion-card-title>
+          <ion-card-title *ngIf="isAuth">Bienvenu </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+              <button ion-item icon-start (click)="onGoToPage(authPage, {mode: 'connect'})" *ngIf="!isAuth">
+                <ion-icon name="person"></ion-icon>
+                Connexion
+              </button>
+              <button ion-item icon-start (click)="onGoToPage(authPage, {mode: 'new'})" *ngIf="!isAuth">
+                <ion-icon name="person-add"></ion-icon>
+                Nouvel utilisateur
+              </button>
+              <button ion-button full (click)="onGoToPage(tabsPage)" *ngIf="isAuth">
+                  Voir les collections
+                </button>
+                <button ion-item icon-start (click)="onDisconnect()" *ngIf="isAuth">
+                  <ion-icon name="exit"></ion-icon>
+                  Déconnexion
+                </button>
+            </ion-list>
+        </ion-card-content>
+      </ion-card>
 </ion-content>
