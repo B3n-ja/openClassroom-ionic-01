@@ -13,14 +13,15 @@
         <ion-card-content>
         <p *ngFor="let line of book.description">{{ line }}</p>
         </ion-card-content>
-        <form #f="ngForm" (ngSubmit)="onToggleBook(f)">
+        <form #lendForm="ngForm" (ngSubmit)="onToggleBook(lendForm)">
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item>
-                            <ion-label>A qui</ion-label>
-                            <ion-input type="text" [(ngModel)]="book.isOutTo" [disabled]="book.isOut" name="qui" required></ion-input>
+                            <ion-label [color]="lendForm.invalid ? 'danger' : ''">A qui*</ion-label>
+                            <ion-input type="text" [(ngModel)]="book.isOutTo" name="qui" required></ion-input>
                         </ion-item>
+                        <div *ngIf="book.isOutTo == ''" danger>A qui avez-vous preté ce livre</div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -29,6 +30,7 @@
                             ion-button
                             full
                             [color]="book.isOut === true ? 'danger' : 'secondary'"
+                            [disabled]="lendForm.invalid"
                             type="submit">{{ book.isOut === true ? 'Récupérer ce livre' : 'Préter ce livre' }}
                         </button>
                     </ion-col>

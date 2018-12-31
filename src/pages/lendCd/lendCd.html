@@ -6,21 +6,22 @@
             <ion-title>{{ cd.titre }}</ion-title>
         </ion-navbar>
     </ion-header>
-    
+
     <ion-content padding>
         <ion-card>
             <ion-card-header>{{ cd.titre }}</ion-card-header>
             <ion-card-content>
             <p *ngFor="let line of cd.description">{{ line }}</p>
             </ion-card-content>
-            <form #f="ngForm" (ngSubmit)="onToggleCd(f)">
+            <form #lendForm="ngForm" (ngSubmit)="onToggleCd(lendForm)">
                 <ion-grid>
                     <ion-row>
                         <ion-col>
                             <ion-item>
-                                <ion-label>A qui</ion-label>
-                                <ion-input type="text" [(ngModel)]="cd.isOutTo" [disabled]="cd.isOut" name="qui" required></ion-input>
+                                <ion-label [color]="lendForm.invalid ? 'danger' : ''">A qui*</ion-label>
+                                <ion-input type="text" [(ngModel)]="cd.isOutTo" name="qui" required></ion-input>
                             </ion-item>
+                            <div *ngIf="cd.isOutTo == ''" danger>A qui avez-vous preté ce disque</div>
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -29,6 +30,7 @@
                                 ion-button
                                 full
                                 [color]="cd.isOut === true ? 'danger' : 'secondary'"
+                                [disabled]="lendForm.invalid"
                                 type="submit">{{ cd.isOut === true ? 'Récupérer ce disque' : 'Préter ce disque' }}
                             </button>
                         </ion-col>
