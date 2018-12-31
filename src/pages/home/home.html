@@ -20,15 +20,18 @@
         Développez une application mobile multiplateforme avec Ionic
         <br>
         Activité 01 : Créez une application basique
+        <br>
+        Activité 02 : Dynamiser votre application
       </ion-card-content>
     </ion-card>
 
     <ion-card>
         <ion-card-header>
-          <ion-card-title *ngIf="!isAuth" text-wrap text-center>Vous devez être connecté pour utiliser l'application</ion-card-title>
           <ion-card-title *ngIf="isAuth">Bienvenu </ion-card-title>
         </ion-card-header>
         <ion-card-content>
+            Vous devez être connecté pour utiliser l'application
+            <br>
             Une fois connecté vous pourrez accéder aux listes des medias.
             <br>
             Lors de la première connexion, vous pouvez charger une liste depuis Firebase dans la page 'paramêtres' ou créer votre liste
