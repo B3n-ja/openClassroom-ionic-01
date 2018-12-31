@@ -42,7 +42,7 @@ export class MyApp {
           } else {
             //console.log('firebase.auth().onAuthStateChanged');
             this.isAuth = false;
-            //this.content.setRoot(HomePage, {mode: 'connect'});
+            this.content.setRoot(HomePage, {mode: 'connect'});
           }
         }
       );
